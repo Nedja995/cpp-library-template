@@ -30,6 +30,44 @@ SET (CMAKE_VERBOSE_MAKEFILE 0) # Use 1 for debugging, 0 for release
 SET (MAINFOLDER ${PROJECT_SOURCE_DIR})
 SET (LIBRARY_OUTPUT_PATH "${MAINFOLDER}/lib")
 
+#############################################################
+#
+#
+#		OPTIONS
+#
+###################################
+
+###########################
+#
+# REQUIRED
+#
+#############
+include(tools/share/cmake/NPMacros.cmake)
+#
+# Add extern library First 
+#
+### Macro usage ##### REQUIRED_THIRD ###
+#
+# Add extern project and make variables:
+#	THIRD_<Name>_SRC
+#	THIRD_<Name>_DEV
+#	THIRD_<Name>_NAME
+#
+#######################################
+#REQUIRED_THIRD(FIRST "first library" NameCppLibraryTemplate)
+############################
+#
+# OPTIONAL
+#
+#############
+
+###################################
+#
+#		END OPTIONS
+#
+#############################################################
+
+##########################
 #
 # Project Search Paths
 #
@@ -81,7 +119,7 @@ ENDFOREACH (CONFIGINPUT ${CONFIGINPUTS})
 # Add Build Targets
 #
 ADD_SUBDIRECTORY(src)
-#ADD_SUBDIRECTORY(test)
+#ADD_SUBDIRECTORY(thirdparty)
 
 #
 # Add Install Targets

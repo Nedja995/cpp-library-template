@@ -8,6 +8,7 @@ class Lib
 		Lib();
 		~Lib();
 		int Sum(int a, int b);
+		std::string Message();
 };
 
 #endif
