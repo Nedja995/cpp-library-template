@@ -4,8 +4,8 @@
 # Project Properties
 #
 CMAKE_MINIMUM_REQUIRED (VERSION 2.6.2)
-PROJECT (NameCppLibraryTemplate)
-SET (APPLICATION_NAME "Library Name")
+PROJECT (CppLibraryName)
+SET (APPLICATION_NAME "LibraryName")
 SET (APPLICATION_CODENAME "${PROJECT_NAME}")
 SET (APPLICATION_COPYRIGHT_YEARS "2009")
 SET (APPLICATION_VERSION_MAJOR 1)
@@ -55,6 +55,19 @@ include(tools/share/cmake/NPMacros.cmake)
 #
 #######################################
 #REQUIRED_THIRD(FIRST "first library" NameCppLibraryTemplate)
+
+# Samples project
+option(SAMPLES_PROJECT "Make sample project" YES)
+
+# Google Tests
+option(GTEST "Add GTest to project" YES)
+option(GTEST_DOWNLOAD_GTEST_AND_GMOCK "Download GTest." YES)
+set(GTEST_DIR "${CMAKE_SOURCE_DIR}/test/gtest/gtest-1.7.0" CACHE PATH "If downloading is disable this will be used. The path to the GooglTest cloned repository.")
+set(GTEST_GMOCK_DIR "${CMAKE_SOURCE_DIR}/test/gtest/gmock-1.7.0" CACHE PATH "If downloading is disable this will be used. The path to the GooglMock cloned repository.")
+# This is understanding now
+#option(BUILD_GTEST "Builds the googletest subproject" OFF)
+#option(BUILD_GMOCK "Builds the googlemock subproject" ON) #Note that googlemock target already builds googletest
+
 ############################
 #
 # OPTIONAL
@@ -75,6 +88,8 @@ LIST (APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}")
 LIST (APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}/tools")
 LIST (APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}/thirdparty")
 SET (CMAKE_MODULE_PATH "${MAINFOLDER}/tools/share/cmake")
+
+# Include
 INCLUDE_DIRECTORIES("${MAINFOLDER}/include")
 
 #
@@ -120,6 +135,16 @@ ENDFOREACH (CONFIGINPUT ${CONFIGINPUTS})
 #
 ADD_SUBDIRECTORY(src)
 #ADD_SUBDIRECTORY(thirdparty)
+
+# Samples project target
+if(SAMPLES_PROJECT)
+	add_subdirectory(samples)
+endif()
+
+# GTest project targets
+if(GTEST)
+	add_subdirectory(test)
+endif()
 
 #
 # Add Install Targets

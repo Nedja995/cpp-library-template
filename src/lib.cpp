@@ -7,7 +7,7 @@
 
 Lib::Lib()
 {
-	
+	std::cout << "hallo";
 }
 
 Lib::~Lib()
