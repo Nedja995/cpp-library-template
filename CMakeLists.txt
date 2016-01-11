@@ -24,7 +24,7 @@ SET (APPLICATION_ID "${APPLICATION_VENDOR_ID}.${PROJECT_NAME}")
 #
 SET (CMAKE_VERBOSE_MAKEFILE 0) # Use 1 for debugging, 0 for release
 
-#
+#aaaa
 # Project Output Paths
 #
 SET (MAINFOLDER ${PROJECT_SOURCE_DIR})
